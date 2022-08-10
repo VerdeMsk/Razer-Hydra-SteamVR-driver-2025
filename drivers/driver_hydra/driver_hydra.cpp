@@ -172,6 +172,9 @@ public:
 
         DelaySystemButtonForChording(cd);
 
+		if ((GetAsyncKeyState('1') & 0x8000) != 0) m_bSwapStickPressUnpress = false;
+		if ((GetAsyncKeyState('2') & 0x8000) != 0) m_bSwapStickPressUnpress = true;
+
         UpdateControllerState(cd);
 
         return true;
@@ -389,7 +392,7 @@ public:
         //vr::VRProperties()->SetInt32Property(m_ulPropertyContainer, Prop_ControllerRoleHint_Int32, TrackedControllerRole_RightHand);
 
         // TODO
-        vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_InputProfilePath_String, "{hydra}/input/hydra_profile.json");
+        vr::VRProperties()->SetStringProperty(m_ulPropertyContainer, Prop_InputProfilePath_String, "{null}/input/hydra_profile.json");
 
 		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/system/click", &m_compStart);
 		vr::VRDriverInput()->CreateBooleanComponent(m_ulPropertyContainer, "/input/grip/click", &m_compBumper);
@@ -542,6 +545,7 @@ private:
     bool m_bHasUpdateHistory;
     bool m_bEnableAngularVelocity;
     bool m_bEnableHoldThumbpad;
+	bool m_bSwapStickPressUnpress = false;
 
     // steamvr.vrsettings config values
     bool m_bEnableIMUEmulation;
@@ -629,22 +633,31 @@ private:
         // TODO?
         //vr::VRDriverInput()->UpdateBooleanComponent(m_compTriggerButtonEmulated, cd.trigger > 0.8f, 0);
 
-        // joystick button
-        vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, cd.buttons & SIXENSE_BUTTON_JOYSTICK, 0);
-
         // joystick axis
+		float joyStickX = 0, joyStickY = 0;
         if (fabsf(cd.joystick_x) > effectiveJoyDeadzone || fabsf(cd.joystick_y) > effectiveJoyDeadzone)
         {
-            vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, cd.joystick_x, 0);
-            vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, cd.joystick_y, 0);
+			joyStickX = cd.joystick_x;
+			joyStickY = cd.joystick_y;
             vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, true, 0);
         }
         else
-        {
-            vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, 0, 0);
-            vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, 0, 0);
             vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, cd.buttons & SIXENSE_BUTTON_JOYSTICK, 0);
-        }
+
+		vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, joyStickX, 0);
+		vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, joyStickY, 0);
+
+		// joystick button
+		bool joyIsPressed = cd.buttons & SIXENSE_BUTTON_JOYSTICK;
+		if (m_bSwapStickPressUnpress == false)
+			vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
+		else {
+			if (joyStickX != 0 || joyStickY != 0)
+				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, !joyIsPressed, 0);
+			else
+				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
+		}
+		
     }
 
     void UpdateTrackingState(sixenseControllerData & cd)
