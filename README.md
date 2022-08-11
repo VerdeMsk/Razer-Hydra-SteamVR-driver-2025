@@ -20,7 +20,7 @@ Description | Razer Hydra button
 Crouch | Button 3
 
 
-For HMD can use any driver that supports button crouch. Can use the [TrueOpenVR and SteamVR bridge driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY HMD](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.md)). While pressing button 3 on the Razer Hydra the keyboard button is pressed (the button is configurable). Crouch settings can be found in the configuration file "default.vrsettings".
+For HMD can use any driver that supports button crouch. Can use the [OpenVR-ArduinoHMD driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [TrueOpenVR and SteamVR bridge driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY HMD](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.md)). While pressing button 3 on the Razer Hydra the keyboard button is pressed (the button is configurable). Crouch settings can be found in the configuration file "default.vrsettings".
 
 ## Installation
 
