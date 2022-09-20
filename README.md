@@ -14,7 +14,7 @@ Button 2, bumper | Grip Button | Button A
 Button 4 | Pressing the touchpad of the right controller | Button B
 Start button | System button | System button
 
-### Switch stick modes
+### Stick modes
 Stick and touchpad mode | Hot key
 ------------ | -------------
 Standard mode, the touchpad is not emulated. | `ALT` + `1`
@@ -32,7 +32,7 @@ Button 2, bumper | Grip Button | Menu button
 Button 4 | Changeable keyboard button press, by default, this is the `V` | Pressing dpad up on the right controller.
 Start button | System button | System button
 
-### Switch stick modes
+### Stick modes
 Stick and touchpad mode | Hot key
 ------------ | -------------
 Standard mode. | `ALT` + `1`
