@@ -74,7 +74,7 @@ Close SteamVR, unplug the controllers USB cable, wait 5-10 seconds and plug it b
 2. Download the [MotionCreator utility](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (official utility by Sixence), switch "Controller Mode" to "Motion controller" mode.
 3. Remove MotionCreator.
 
-If it doesn’t help, try another utility RazerHydra [1](https://support.razer.com/console/razer-hydra)[2](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (official utility by Razer).
+If it doesn’t help, try another utility RazerHydra [[1]](https://support.razer.com/console/razer-hydra)[[2]](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (official utility by Razer).
 
 
 **• The cursor moves:**<br>

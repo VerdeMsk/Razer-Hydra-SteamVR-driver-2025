@@ -73,7 +73,7 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 2. Загрузите [утилиту MotionCreator](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (официальная утилита от Sixence), переключите "Controller Mode" в режим "Motion controller".
 3. Удалите MotionCreator.
 
-Если не помогло попробуйте еще утилиту RazerHydra [1](https://support.razer.com/console/razer-hydra)[2](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (официальная утилита от Razer).
+Если не помогло попробуйте еще утилиту RazerHydra [[1]](https://support.razer.com/console/razer-hydra)[[2]](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (официальная утилита от Razer).
 
 
 **• Двигается курсор**<br>
