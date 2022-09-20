@@ -1,9 +1,12 @@
 {
     "hydra" : {
-        "EnableImu" : true,
-        "EnableDeveloperMode" : false,
-		"CrouchPressKey": 111,
+		"CrouchPressKey": 19,
+		"CustomPressKey": 86,
 		"CrouchOffset": 0.7,
-        "JoyStickDeadZone" : 0.0
+        "JoyStickDeadZone" : 0.0,
+		"IndexControllers" : true,
+		"IndexCustomKey" : false,		
+        "EnableImu" : true,
+        "EnableDeveloperMode" : false
     }
 }

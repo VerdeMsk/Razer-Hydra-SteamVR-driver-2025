@@ -18,6 +18,23 @@
 #include <sixense_utils/derivatives.hpp>
 #include <Eigen/Geometry>
 
+#define HydraLeftRole		1
+#define HydraRightRole		2
+
+bool RecognizeAsIndexCtrls = false;
+bool IndexEnabledCustomKey = false;
+
+int32_t IndexStickMode = 0;
+int32_t ViveStickMode = 0;
+bool m_bSwapStickPressUnpress = false;
+bool m_bCrouchEnable = true;
+bool m_bCrouchPressed;
+bool m_bViveCustomKeyPressed;
+bool m_bViveCustomTouchpadPressed;
+
+bool m_bIndexCustomKeyPressed;
+bool m_bIndexKeyboardKeyPressed;
+
 class CHydraControllerDriver;
 
 class CServerDriver_Hydra : public vr::IServerTrackedDeviceProvider
