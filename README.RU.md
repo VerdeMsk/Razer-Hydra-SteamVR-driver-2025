@@ -64,12 +64,11 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 Дополнительная информация есть в [вики](https://github.com/betavr/steamvr_driver_hydra/wiki).
 
 ## Решение проблем
-**Стик наклонен в одну из сторон и не двигается в протиположную**
-
+**• Стик наклонен в одну из сторон и не двигается в протиположную**<br>
 Закройте SteamVR, отключите USB провод контроллеров, подождите 5-10 секунд и подключите снова..
 
 
-**Драйвер не работает:**
+**• Драйвер не работает:**
 1. Удалите предыдущий установленный драйвер в Steam или папку.
 2. Загрузите [утилиту MotionCreator](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (официальная утилита от Sixence), переключите "Controller Mode" в режим "Motion controller".
 3. Удалите MotionCreator.
@@ -77,17 +76,14 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 Если не помогло попробуйте еще утилиту RazerHydra [1](https://support.razer.com/console/razer-hydra)[2](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) (официальная утилита от Razer).
 
 
-**Двигается курсор**
-
+**• Двигается курсор**<br>
 Удалите MotionCreator или RazerHydra утилиту.
 
 
-**Контроллеры безумно вращаются когда отодвигаешь их от базовой станции**
-
+**• Контроллеры безумно вращаются когда отодвигаешь их от базовой станции**<br>
 Контакты главной катушки, идущие в схему, окислились и их нужно зачистить, поцарапать или припаять напрямую без коннектора. 
 
 ## Сборка
-
 1. Загрузите исходники и распакуйте.
 2. [Загрузите "openvr"](https://github.com/ValveSoftware/openvr) и распакуйте в "C:\openvr".
 3. [Загрузите "SixenseSDK_102215.zip"](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) и распакуйте в "C:\SixenseSDK_102215".
