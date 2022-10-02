@@ -43,7 +43,7 @@ All clicks are inverted. | `ALT` + `4`
 ### Other features
 Description | Razer Hydra Button
 ------------ | -------------
-Turning on, off crouch | `ALT` + `9` and `ALT` + `0`
+Turning on, off crouch | `ALT` + `9` and `ALT` + `0` (replaced to touchpad press)
 
 - For HMD, you can use any driver that supports crouch by button. For example, you can use [OpenVR-ArduinoHMD Driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [TrueOpenVR and SteamVR Bridge Driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY headsets](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)).
 
@@ -51,7 +51,7 @@ Turning on, off crouch | `ALT` + `9` and `ALT` + `0`
 
 - While pressing button 3, on the right Razer Hydra controller, the keyboard button is also pressed (the button is configurable). Crouch settings can be found in the configuration file "default.vrsettings".
 
-- Supports pressing the keyboard button, on button 4, of the left controller. By default, this is the `V` button, you can change it in the "default.vrsettings" configuration file, the `CustomPressKey` parameter, the code for the desired button can be found [here](https://github.com/r57zone/Half-Life-Alyx-novr/blob/master/BINDINGS.md#codes). For the Index controller, you need to enable it in the configuration file by changing the value of `false` to `true`, the `IndexCustomKey` parameter and it will replace pressing the right controller touchpad.
+- Supports pressing the keyboard button, on button 4, of the left controller. By default, this is the `V` button, you can change it in the "default.vrsettings" configuration file, the `CustomPressKey` parameter, the code for the desired button can be found [here](https://github.com/r57zone/Half-Life-Alyx-novr/blob/master/BINDINGS.md#codes). You can turn it on in the configuration file by changing the value of `false` to `true`, the `EnableCustomKey` parameter and it will replace pressing the controller touchpad.
 
 - You can also edit the controller layout in the "SteamVR Bindings UI" by opening the SteamVR settings, selecting "Advance Settings" -> "Show" and going to the controllers item.
 
@@ -66,7 +66,7 @@ For more detailed instructions please visit the [wiki](https://github.com/betavr
 
 ## Problems solving
 **• The stick is tilted to one side and does not move to the opposite side**<br>
-Close SteamVR, unplug the controllers USB cable, wait 5-10 seconds and plug it back in..
+Close SteamVR, unplug the controllers USB cable, wait 5-10 seconds and plug it back in.
 
 
 **• Driver don't work:**
@@ -81,7 +81,7 @@ If it doesn’t help, try another utility RazerHydra [[1]](https://support.razer
 Uninstall MotionCreator or RazerHydra utility.
 
 
-**• Controllers spin insanely when pushed away from the base station**<br>
+**• Controllers spin insanely when pushed away from the base station [(like that)](https://twitter.com/r57zone/status/1467868670609305600)**<br>
 The main coil contacts going into the circuit are oxidized and need to be stripped, scratched or soldered directly without a connector.
 
 ## Building
