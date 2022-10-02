@@ -22,7 +22,7 @@
 #define HydraRightRole		2
 
 bool RecognizeAsIndexCtrls = false;
-bool IndexEnabledCustomKey = false;
+bool EnabledCustomKey = false;
 
 int32_t IndexStickMode = 0;
 int32_t ViveStickMode = 0;

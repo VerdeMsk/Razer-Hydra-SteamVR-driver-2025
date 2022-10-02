@@ -64,13 +64,12 @@ inline HmdQuaternion_t HmdQuaternion_Init(double w, double x, double y, double z
 static const char * const k_pch_Hydra_Section = "hydra";
 //static const char * const k_pch_Hydra_RenderModel_String = "rendermodel";
 static const char * const k_pch_Hydra_EnableIMU_Bool = "EnableImu";
-static const char * const k_pch_Hydra_EnableDeveloperMode_Bool = "EnableDeveloperMode";
 static const char * const k_pch_Hydra_JoystickDeadzone_Float = "JoyStickDeadZone";
 static const char * const k_pch_Hydra_CrouchPressKey_Int32 = "CrouchPressKey";
 static const char * const k_pch_Hydra_CustomPressKey_Int32 = "CustomPressKey";
 static const char * const k_pch_Hydra_CrouchOffset_Float = "CrouchOffset";
 static const char * const k_pch_Hydra_RecognizeAsIndexControllers_Bool = "IndexControllers";
-static const char * const k_pch_Hydra_IndexCustomKey_Bool = "IndexCustomKey";
+static const char * const k_pch_Hydra_EnableCustomKey_Bool = "EnableCustomKey";
 float PosZOffset = 0;
 
 static void GenerateSerialNumber(char *p, int psize, int base, int controller)
@@ -369,9 +368,6 @@ public:
         // Set joystick deadzone
         m_fJoystickDeadzone = vr::VRSettings()->GetFloat(k_pch_Hydra_Section, k_pch_Hydra_JoystickDeadzone_Float);
 
-        // Enable developer features
-        m_bEnableDeveloperMode = vr::VRSettings()->GetBool(k_pch_Hydra_Section, k_pch_Hydra_EnableDeveloperMode_Bool);
-
         // "Hold Thumbpad" mode (not user configurable)
         m_bEnableHoldThumbpad = true;
 
@@ -385,7 +381,7 @@ public:
 		m_nCustomPressKey = vr::VRSettings()->GetInt32(k_pch_Hydra_Section, k_pch_Hydra_CustomPressKey_Int32);
 
 		// Enable custom key on left Index controller
-		IndexEnabledCustomKey = vr::VRSettings()->GetBool(k_pch_Hydra_Section, k_pch_Hydra_IndexCustomKey_Bool);
+		EnabledCustomKey = vr::VRSettings()->GetBool(k_pch_Hydra_Section, k_pch_Hydra_EnableCustomKey_Bool);
     }
 
     virtual ~CHydraControllerDriver()
@@ -702,7 +698,6 @@ private:
 
     // steamvr.vrsettings config values
     bool m_bEnableIMUEmulation;
-    bool m_bEnableDeveloperMode;
     float m_fJoystickDeadzone;
 
 	int32_t m_nCrouchPressKey;
@@ -861,21 +856,39 @@ private:
 			if (sixenceControllerRole == HydraLeftRole)
 				m_bIndexCustomKeyPressed = cd.buttons & SIXENSE_BUTTON_4;
 			if  (sixenceControllerRole == HydraRightRole && m_bIndexCustomKeyPressed) {
-				if (IndexEnabledCustomKey == false) {
-					vr::VRDriverInput()->UpdateScalarComponent(m_trackpadForce, 1.0f, 0);
-					vr::VRDriverInput()->UpdateBooleanComponent(m_trackpadTouch, true, 0);
+
+				if (EnabledCustomKey == false) {
+					if (m_bCrouchEnable) { // If crouch is off, then we do nothing here
+						vr::VRDriverInput()->UpdateScalarComponent(m_trackpadForce, 1.0f, 0);
+						vr::VRDriverInput()->UpdateBooleanComponent(m_trackpadTouch, true, 0);
+					}
 				} else {
 					keybd_event(m_nCustomPressKey, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0); // Key down
 					m_bIndexKeyboardKeyPressed = true;
 				}
-			} else if (m_bIndexKeyboardKeyPressed) {
+
+			} else if (m_bIndexKeyboardKeyPressed && EnabledCustomKey) {
 				keybd_event(m_nCustomPressKey, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0); // Key up
 				m_bIndexKeyboardKeyPressed = false;
 			}
 
+			// If crouch is disabled, then the touchpad click is emulated on controllers
+			if (!m_bCrouchEnable) {
+				if (!EnabledCustomKey && sixenceControllerRole == HydraLeftRole && cd.buttons & SIXENSE_BUTTON_4) {
+					vr::VRDriverInput()->UpdateScalarComponent(m_trackpadForce, 1.0f, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_trackpadTouch, true, 0);
+				}
+				if (sixenceControllerRole == HydraRightRole && cd.buttons & SIXENSE_BUTTON_3) {
+					vr::VRDriverInput()->UpdateScalarComponent(m_trackpadForce, 1.0f, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_trackpadTouch, true, 0);
+				}
+			}
+
+
 			//vr::VRDriverInput()->UpdateSkeletonComponent(m_skeletonHandle, vr::VRSkeletalMotionRange_WithController, m_handBones, fingerTracking::NUM_BONES);
 			//vr::VRDriverInput()->UpdateSkeletonComponent(m_skeletonHandle, vr::VRSkeletalMotionRange_WithoutController, m_handBones, fingerTracking::NUM_BONES);
-		} else {
+		}
+		else {
 			// Vive controller
 
 			// Application menu
@@ -915,7 +928,7 @@ private:
 			bool joyIsPressed = cd.buttons & SIXENSE_BUTTON_JOYSTICK;
 			if (ViveStickMode == 0 || (ViveStickMode == 1 && sixenceControllerRole == HydraLeftRole))
 				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
-			
+
 			// Always pressed dpad left & right on second controler with invert click
 			else if (ViveStickMode == 1 && sixenceControllerRole == HydraRightRole) {
 				//vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, false, 0);
@@ -923,35 +936,46 @@ private:
 					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, !joyIsPressed, 0);
 				else
 					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
-			
-			// Always pressed except dpad up & down on second controler with invert click
-			} else if (ViveStickMode == 2) {
+
+				// Always pressed except dpad up & down on second controler with invert click
+			}
+			else if (ViveStickMode == 2) {
 				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, false, 0);
 
 				if (sixenceControllerRole == HydraRightRole) {
 					if (joyStickX != 0 && joyStickY < 0.3f && joyStickY > -0.3f) {
 						vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, !joyIsPressed, 0);
-					} else
+					}
+					else
 						vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
-				} else {
+				}
+				else {
 					if (joyStickX != 0 || joyStickY != 0)
 						vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, !joyIsPressed, 0);
 					else
 						vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
 				}
-			
-			// Always pressed with invert click
-			} else if (ViveStickMode == 3) { 
+
+				// Always pressed with invert click
+			}
+			else if (ViveStickMode == 3) {
 				if (joyStickX != 0 || joyStickY != 0)
 					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, !joyIsPressed, 0);
 				else
 					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, joyIsPressed, 0);
 			}
 
-			// Custom keyboard button on left vive controller
+			// If custom key enabled then press custom keyboard button on left vive controller or press touchpad down
 			if (sixenceControllerRole == HydraLeftRole && cd.buttons & SIXENSE_BUTTON_4) {
-				keybd_event(m_nCustomPressKey, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0); // Key down
-				m_bViveCustomKeyPressed = true;
+				if (EnabledCustomKey) {
+					keybd_event(m_nCustomPressKey, 0x45, KEYEVENTF_EXTENDEDKEY | 0, 0); // Key down
+					m_bViveCustomKeyPressed = true;
+				} else {
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, 0, 0);
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, m_bCrouchEnable ? 1.0f : -1.0f, 0); // Swap if crouch is disabled
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, true, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, true, 0);
+				}
 			} else if (m_bViveCustomKeyPressed) {
 				keybd_event(m_nCustomPressKey, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0); // Key up
 				m_bViveCustomKeyPressed = false;
@@ -960,7 +984,7 @@ private:
 			// Custom vive button on left vive controller
 			if (sixenceControllerRole == HydraLeftRole)
 				m_bViveCustomTouchpadPressed = cd.buttons & SIXENSE_BUTTON_3;
-			if (m_bViveCustomTouchpadPressed && sixenceControllerRole == HydraRightRole)
+			if (m_bCrouchEnable && m_bViveCustomTouchpadPressed && sixenceControllerRole == HydraRightRole)
 			{
 				vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, 0, 0);
 				vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, -1.0f, 0);
@@ -974,6 +998,22 @@ private:
 				vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, 1.0f, 0);
 				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, true, 0);
 				vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, true, 0);
+			}
+
+			// If crouch is disabled
+			if (!m_bCrouchEnable) {
+				if (sixenceControllerRole == HydraLeftRole && cd.buttons & SIXENSE_BUTTON_3) {
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, 0, 0);
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, 1.0f, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, true, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, true, 0);
+				}
+				if (sixenceControllerRole == HydraRightRole && cd.buttons & SIXENSE_BUTTON_3) {
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisX, 0, 0);
+					vr::VRDriverInput()->UpdateScalarComponent(m_compJoystickAxisY, -1.0f, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickTouch, true, 0);
+					vr::VRDriverInput()->UpdateBooleanComponent(m_compJoystickButton, true, 0);
+				}
 			}
 
 		}
