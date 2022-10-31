@@ -45,13 +45,13 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 ------------ | -------------
 Включение, выключение приседания | `ALT` + `9` и `ALT` + `0` (заменяет на нажатие тачпада)
 
-- Для HMD можно использовать любой драйвер, с поддержкой приседания по кнопке. Например, можно использовать [OpenVR-ArduinoHMD драйвер](https://github.com/r57zone/OpenVR-ArduinoHMD) или [TrueOpenVR и SteamVR мост драйвер](https://github.com/TrueOpenVR) для HMD (FreeTrack для HMD из смартфонов или ArduinoHMD для [полноценных DIY шлемов](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)).
+- Для HMD можно использовать любой драйвер, с поддержкой приседания по кнопке. Например, можно использовать [OpenVR-ArduinoHMD драйвер](https://github.com/r57zone/OpenVR-ArduinoHMD) или [TrueOpenVR и SteamVR мост драйвер](https://github.com/TrueOpenVR) для HMD (FreeTrack для HMD из смартфонов или ArduinoHMD для [полноценных DIY шлемов](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)). По умолчанию это кнопка `PAUSE`, изменить её можно в конфигурационном файле "default.vrsettings", параметр `CrouchPressKey`, название нужной кнопки можно найти [здесь](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.RU.md).
 
 - Изменить тип контроллеров, с Valve Index на HTC Vive, можно изменив значение `true` на `false`, параметра `IndexControllers`, в конфигурационном файле "default.vrsettings", параметр `CustomPressKey`
 
 - Во время нажатия кнопки 3, на правом контроллере Razer Hydra, также нажимается кнопка клавиатуры (кнопка настраивается). Настройки приседания можно найти в конфигурационном файле "default.vrsettings".
 
-- Поддерживается нажатие кнопки клавиатуры, на кнопку 4, левого контроллера. По умолчанию это кнопка `V`, изменить её можно в конфигурационном файле "default.vrsettings", параметр `CustomPressKey`, код нужной кнопки можно найти [здесь](https://github.com/r57zone/Half-Life-Alyx-novr/blob/master/BINDINGS.md#codes). Включить её можно в конфигурационном файле, изменив значение `false` на `true`, параметра `EnableCustomKey` и она заменит нажатие тачпада контроллера.
+- Поддерживается нажатие кнопки клавиатуры, на кнопку 4, левого контроллера. По умолчанию это кнопка `V`, изменить её можно в конфигурационном файле "default.vrsettings", параметр `CustomPressKey`, название нужной кнопки можно найти [здесь](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.RU.md). Включить её можно в конфигурационном файле, изменив значение `false` на `true`, параметра `EnableCustomKey` и она заменит нажатие тачпада контроллера.
 
 - Отредактировать раскладку контроллеров можно также в "SteamVR Bindings UI", открыв настройки SteamVR, выбрав "Advance Settings" -> "Show" и перейдя в пункт контроллеры.
 
@@ -60,8 +60,6 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 2. Распакуйте архив в "..\Steam\steamapps\common\SteamVR\drivers".
 3. [Добавьте параметр](https://youtu.be/QCA3m4_3IJM?t=197) `"activateMultipleDrivers" : true,` в конфиг "...\Steam\config\steamvr.vrsettings", в раздел `steamvr`.
 4. Измените мёртвую зону, если ваш стик уходит в сторону, в конфиге "..\Steam\steamapps\common\SteamVR\drivers\razer_hydra\hydra\resources\settings\default.vrsettings", параметр `JoyStickDeadZone`. Чтобы определить значение мёртвой зоны, для проблемного стика, можно использовать [эту программу](https://github.com/r57zone/Sixence-Razer-Hydra-sample/releases).
-
-Дополнительная информация есть в [вики](https://github.com/betavr/steamvr_driver_hydra/wiki).
 
 ## Решение проблем
 **• Стик наклонен в одну из сторон и не двигается в протиположную**<br>

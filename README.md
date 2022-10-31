@@ -45,13 +45,13 @@ Description | Razer Hydra Button
 ------------ | -------------
 Turning on, off crouch | `ALT` + `9` and `ALT` + `0` (replaced to touchpad press)
 
-- For HMD, you can use any driver that supports crouch by button. For example, you can use [OpenVR-ArduinoHMD Driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [TrueOpenVR and SteamVR Bridge Driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY headsets](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)).
+- For HMD, you can use any driver that supports crouch by button. For example, you can use [OpenVR-ArduinoHMD Driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [TrueOpenVR and SteamVR Bridge Driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY headsets](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.md)). By default, this is the `PAUSE` button, you can change it in the "default.vrsettings" configuration file, the `CrouchPressKey` parameter, the name of the desired button can be found [here](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.md).
 
 - You can change the type of controllers from Valve Index to HTC Vive by changing the value `true` to `false`, parameter `IndexControllers`, in the configuration file "default.vrsettings", parameter `CustomPressKey`
 
 - While pressing button 3, on the right Razer Hydra controller, the keyboard button is also pressed (the button is configurable). Crouch settings can be found in the configuration file "default.vrsettings".
 
-- Supports pressing the keyboard button, on button 4, of the left controller. By default, this is the `V` button, you can change it in the "default.vrsettings" configuration file, the `CustomPressKey` parameter, the code for the desired button can be found [here](https://github.com/r57zone/Half-Life-Alyx-novr/blob/master/BINDINGS.md#codes). You can turn it on in the configuration file by changing the value of `false` to `true`, the `EnableCustomKey` parameter and it will replace pressing the controller touchpad.
+- Supports pressing the keyboard button, on button 4, of the left controller. By default, this is the `V` button, you can change it in the "default.vrsettings" configuration file, the `CustomPressKey` parameter, the name for the desired button can be found [here](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.md). You can turn it on in the configuration file by changing the value of `false` to `true`, the `EnableCustomKey` parameter and it will replace pressing the controller touchpad.
 
 - You can also edit the controller layout in the "SteamVR Bindings UI" by opening the SteamVR settings, selecting "Advance Settings" -> "Show" and going to the controllers item.
 
@@ -61,8 +61,6 @@ Turning on, off crouch | `ALT` + `9` and `ALT` + `0` (replaced to touchpad press
 2. Unpack archive to "..\Steam\steamapps\common\SteamVR\drivers".
 3. [Add option](https://youtu.be/QCA3m4_3IJM?t=197) `"activateMultipleDrivers" : true,` to config "...\Steam\config\steamvr.vrsettings", to `steamvr` section.
 4. Change the dead zone if your stick goes to the side in config "..\Steam\steamapps\common\SteamVR\drivers\razer_hydra\hydra\resources\settings\default.vrsettings", option `JoyStickDeadZone`. To determine the value of the dead zone can use [this program](https://github.com/r57zone/Sixence-Razer-Hydra-sample/releases).
-
-For more detailed instructions please visit the [wiki](https://github.com/betavr/steamvr_driver_hydra/wiki).
 
 ## Problems solving
 **• The stick is tilted to one side and does not move to the opposite side**<br>
