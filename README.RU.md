@@ -45,7 +45,7 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 ------------ | -------------
 Включение, выключение приседания | `ALT` + `9` и `ALT` + `0` (заменяет на нажатие тачпада)
 
-- Для HMD можно использовать любой драйвер, с поддержкой приседания по кнопке. Например, можно использовать [OpenVR-ArduinoHMD драйвер](https://github.com/r57zone/OpenVR-ArduinoHMD) или [TrueOpenVR и SteamVR мост драйвер](https://github.com/TrueOpenVR) для HMD (FreeTrack для HMD из смартфонов или ArduinoHMD для [полноценных DIY шлемов](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)). По умолчанию это кнопка `PAUSE`, изменить её можно в конфигурационном файле "default.vrsettings", параметр `CrouchPressKey`, название нужной кнопки можно найти [здесь](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.RU.md).
+- Для HMD можно использовать любой драйвер, с поддержкой приседания по кнопке. Например, можно использовать [OpenVR-ArduinoHMD драйвер](https://github.com/r57zone/OpenVR-ArduinoHMD) или [OpenVR-OpenTrack](https://github.com/r57zone/OpenVR-OpenTrack) драйверы для HMD (FreeTrack для HMD из смартфонов или ArduinoHMD для [полноценных DIY шлемов](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.RU.md)). По умолчанию это кнопка `PAUSE`, изменить её можно в конфигурационном файле "default.vrsettings", параметр `CrouchPressKey`, название нужной кнопки можно найти [здесь](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.RU.md).
 
 - Изменить тип контроллеров, с Valve Index на HTC Vive, можно изменив значение `true` на `false`, параметра `IndexControllers`, в конфигурационном файле "default.vrsettings", параметр `CustomPressKey`
 

@@ -45,7 +45,7 @@ Description | Razer Hydra Button
 ------------ | -------------
 Turning on, off crouch | `ALT` + `9` and `ALT` + `0` (replaced to touchpad press)
 
-- For HMD, you can use any driver that supports crouch by button. For example, you can use [OpenVR-ArduinoHMD Driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [TrueOpenVR and SteamVR Bridge Driver](https://github.com/TrueOpenVR) for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY headsets](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.md)). By default, this is the `PAUSE` button, you can change it in the "default.vrsettings" configuration file, the `CrouchPressKey` parameter, the name of the desired button can be found [here](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.md).
+- For HMD, you can use any driver that supports crouch by button. For example, you can use [OpenVR-ArduinoHMD Driver](https://github.com/r57zone/OpenVR-ArduinoHMD) or [OpenVR-OpenTrack](https://github.com/r57zone/OpenVR-OpenTrack) drivers for HMD (FreeTrack for HMD from smartphones or ArduinoHMD for [full-fledged DIY headsets](https://github.com/TrueOpenVR/TrueOpenVR-DIY/blob/master/HMD/HMD.md)). By default, this is the `PAUSE` button, you can change it in the "default.vrsettings" configuration file, the `CrouchPressKey` parameter, the name of the desired button can be found [here](https://github.com/r57zone/DualShock4-emulator/blob/master/BINDINGS.md).
 
 - You can change the type of controllers from Valve Index to HTC Vive by changing the value `true` to `false`, parameter `IndexControllers`, in the configuration file "default.vrsettings", parameter `CustomPressKey`
 
