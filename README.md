@@ -85,8 +85,8 @@ Uninstall MotionCreator or RazerHydra utility.
 The main coil contacts going into the circuit are oxidized and need to be stripped, scratched or soldered directly without a connector.
 
 ## Building
-1. Download sources and unpack.
+1. Download the sources and unzip them.
 2. [Download "openvr"](https://github.com/ValveSoftware/openvr) and unpack to "C:\openvr".
 3. [Download "SixenseSDK_102215.zip"](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) and unpack to "C:\SixenseSDK_102215".
-4. [Download Microsoft Visual Studio Code 2017](https://code.visualstudio.com/download) and compile.
-5. Change the SDK version and toolset to yours in the project properties, and then select the "Release" build type and "x86" or "x64" architecture.
+2. [Download](https://code.visualstudio.com/download) and [install](https://github.com/r57zone/RE4ExtendedControl/assets/9499881/69dafce6-fd57-4768-83eb-c1bb69901f07) Microsoft Visual Studio Code 2017+.
+5. Change the SDK version and toolset to yours in the project properties, then select the "Release" build type and "x86" or "x64" architecture and compile.

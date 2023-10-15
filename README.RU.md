@@ -85,5 +85,5 @@ Razer Hydra | Левый Vive контроллер | Правый Vive конт�
 1. Загрузите исходники и распакуйте.
 2. [Загрузите "openvr"](https://github.com/ValveSoftware/openvr) и распакуйте в "C:\openvr".
 3. [Загрузите "SixenseSDK_102215.zip"](https://github.com/r57zone/Razer-Hydra-SteamVR-driver/releases/tag/1) и распакуйте в "C:\SixenseSDK_102215".
-4. [Загрузите Microsoft Visual Studio Code 2017](https://code.visualstudio.com/download) и скомпилируйте.
-5. Измените в свойствах проекта версию SDK, а также набор инструментов на ваши, после чего выберите типа сборки "Release" а архитектуру "x86" или "x64".
+2. [Загрузите Microsoft Visual Studio Code 2017+](https://code.visualstudio.com/download) и [установите](https://github.com/r57zone/RE4ExtendedControl/assets/9499881/69dafce6-fd57-4768-83eb-c1bb69901f07).
+5. Измените в свойствах проекта версию SDK, а также набор инструментов на ваши, после чего выберите типа сборки "Release" а архитектуру "x86" или "x64" и скомпилируйте.
