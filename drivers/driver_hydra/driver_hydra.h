@@ -25,12 +25,12 @@ bool RecognizeAsIndexCtrls = false;
 bool EnabledCustomKey = false;
 
 int32_t IndexStickMode = 0;
-int32_t ViveStickMode = 0;
+//int32_t ViveStickMode = 0; // legacy
 bool m_bSwapStickPressUnpress = false;
 bool m_bCrouchEnable = true;
 bool m_bCrouchPressed;
-bool m_bViveCustomKeyPressed;
-bool m_bViveCustomTouchpadPressed;
+//bool m_bViveCustomKeyPressed; // legacy
+//bool m_bViveCustomTouchpadPressed; // legacy
 
 bool m_bIndexCustomKeyPressed;
 bool m_bIndexKeyboardKeyPressed;
@@ -60,6 +60,7 @@ private:
     std::recursive_mutex m_Mutex;
     typedef std::lock_guard<std::recursive_mutex> scope_lock;
     std::vector< CHydraControllerDriver * > m_vecControllers;
+	bool IsAnyControllerCalibrated(); // verde_msk
     static void ThreadEntry(CServerDriver_Hydra *pDriver);
     void ThreadFunc();
     void ScanForNewControllers(bool bNotifyServer);

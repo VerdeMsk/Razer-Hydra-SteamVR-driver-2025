@@ -1,11 +1,19 @@
 {
     "hydra" : {
-        "IndexControllers" : true,
-        "JoyStickDeadZone" : 0.0,
+        "IndexControllers" : false,
+	"GripToggle" : true,
+        "JoyStickDeadZone" : 0.05,
         "CrouchPressKey": "PAUSE",
-        "CrouchOffset": 0.7,
+        "CrouchOffset": 0.6,
         "EnableCustomKey" : false,
         "CustomPressKey": "V",
-        "EnableImu" : true
+	"ShowBaseStation" : true,
+        "EnableImu" : true,
+	"AlternativeImuVersion" : true,
+	"ThrowMultiplier" : 2.5,
+	"SixenseFilterEnabled" : true,
+	"DynamicFilterPower": 5.0,
+	"MinFilteringValue": 0.75,
+	"MaxFilteringValue": 0.99
     }
 }
