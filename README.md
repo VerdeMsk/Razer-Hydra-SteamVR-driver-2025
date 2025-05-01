@@ -1,20 +1,20 @@
 # Razer Hydra Driver for SteamVR 2025
-The driver emulates Valve Index or Oculus Touch controllers using Razer Hydra controllers
+The driver emulates Valve Index (Knuckles) or Oculus Touch controllers using Razer Hydra controllers
 
 ## Overview
-This version is based on the r57zone Hydra SteamVR driver, but heavily modified with the help of ChatGPT.
-Vive Wand emulation has been replaced with Oculus Touch emulation, while Valve Index support is preserved.
-The Sixense filtering system was integrated — this is the same filter you might have seen in MotionCreator2.
-Originally, it caused high latency and poor responsiveness. Its logic has been improved to behave more dynamically:
-The filter strength increases when the controller is idle or far from the base.
-It decreases when the controller is moving or close to the base station.
-The Hydra magnetic base station is also now displayed in SteamVR (custom-built 3D model).
-To reduce conflicts with other drivers, it currently behaves as a SteamVR tracker, not as a base station.
-However, this workaround hasn’t eliminated all potential issues...
-Its position is recalculated during calibration, based on controller position.
-Rotation is currently not calculated.
+This version is based on the r57zone Hydra SteamVR driver, but heavily modified with the help of ChatGPT.<br>
+Vive Wand emulation has been replaced with Oculus Touch emulation, while Valve Index support is preserved.<br>
+The Sixense filtering system was integrated — this is the same filter you might have seen in MotionCreator2.<br>
+Originally, it caused high latency and poor responsiveness. Its logic has been improved to behave more dynamically:<br>
+The filter strength increases when the controller is idle or far from the base.<br>
+It decreases when the controller is moving or close to the base station.<br>
+The Hydra magnetic base station is also now displayed in SteamVR (custom-built 3D model).<br>
+To reduce conflicts with other drivers, it currently behaves as a SteamVR tracker, not as a base station.<br>
+However, this workaround hasn’t eliminated all conflicts...<br>
+Its position is recalculated during calibration, based on controller position.<br>
+Rotation is currently not calculated.<br>
 
-[Youtube preview](https://youtu.be/ugt8mn3hZBU?si=OYFKQwaMa-GF-Qem)
+[Youtube preview](https://youtu.be/kKQtxm3kxKQ)
 
 ## Features
 - Oculus Touch emulation replaces Vive Wand emulation
@@ -32,7 +32,7 @@ Rotation is currently not calculated.
 	The new version uses direct position deltas for calculating velocity and acceleration.<br>
 	Actually not a much of a difference, but the seems like velocity multiplier causes less jitter with the new IMU in some cases.
 - Updated to the latest OpenVR SDK
-- Various small improvements and bugfixes
+- Small improvements
 
 ## Issues and Limitations
 - If Hydra base station visualization is enabled, it may conflict with other SteamVR drivers, like Driver4VR.
